@@ -17,18 +17,19 @@ public class FirstController {
 	}
 	
 	@GetMapping(value="test")
-	public UserDtoLombok test() {
-		UserDtoLombok userDto=new UserDtoLombok();
-		userDto.setAge(20);
+	public UserDto test() {
+		UserDto userDto=new UserDto();
 		userDto.setName("Spring");
+		userDto.setAge(20);
 		return userDto;
 	}
 	
 	@GetMapping(value="testlombok")
 	public UserDtoLombok testlombok() {
 		UserDtoLombok userDtoLombok=new UserDtoLombok();
-		userDtoLombok.setAge(20);
 		userDtoLombok.setName("Spring");
+		userDtoLombok.setAge(20);
+		System.out.println(userDtoLombok);
 		return userDtoLombok;
 	}
 
