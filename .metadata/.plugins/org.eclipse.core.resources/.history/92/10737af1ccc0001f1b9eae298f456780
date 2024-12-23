@@ -1,0 +1,16 @@
+package com.example;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+//@RestController는 Restful Web API를 좀 더 쉽게 만들기 위해 
+//스프링 프레임워크에 도입된 기능입니다.
+@RestController
+public class FirstController {
+	
+	@GetMapping(value="/")
+	public String HelloWorld() {
+		return "Hello World";
+	}
+
+}

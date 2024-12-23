@@ -1,0 +1,11 @@
+package com.example;
+
+//스프링에서는 getter와 setter를 사용합니다.
+public class UserDto {
+	
+	private String name;
+	private Integer age;
+	
+	
+
+}
