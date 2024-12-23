@@ -13,7 +13,6 @@ INDEX VERSION 1.134+C:\Users\user\Documents\dev\spring241223\.metadata\.plugins\
 554557806.index
 3019731793.index
 3948322288.index
-3069134441.index
 3942143929.index
 128133751.index
 4251468242.index
