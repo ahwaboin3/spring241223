@@ -1,5 +1,7 @@
 package com.shop.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.shop.entity.Item;
@@ -17,7 +19,17 @@ import com.shop.entity.Item;
 // void delete(T entity) | 엔티티 삭제
 // count() | 엔티티 총 개수 반환
 // Iterable<T> findAll() | 모든 엔티티 조회
+// Optional <T> findById (Long id)
 public interface ItemRepository extends JpaRepository<Item, Long>{
+	//쿼리 메소드
+	//쿼리 메소드는 스프링 데이터 JPA에서 제공하는 핵심 기능 중 하나로 Repository
+	//인터페이스에 간단한 네이밍 룰을 이용하여 메소드를 작성하면 원하는 쿼리를 실행할
+	//있습니다.
+	//네이밍 룰 중 find를 사용 한다.
+	//find+(엔티티 이름)+By+변수이름
+	//엔티티명은 생략이 가능합니다.
+	//상품의 이름을 이용하여 데이터를 조회하는 메소드를 추가
+	List<Item> findByItemNm(String itemNm);
 
 }
 
