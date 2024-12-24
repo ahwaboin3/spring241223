@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- thymeleafEx/thymeleafEx04.html -->
+ <h1>상품 리스트 조건문을 이용한 출력 예제</h1>
+ <table border="1">
+ 	<thead>
+ 		<tr>
+ 			<td>순번</td>
+ 			<td>상품명</td>
+ 			<td>가격</td>
+ 			<td>상품등록일</td>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<!-- th:if, th:unless 예제 
+ 			조건문을 알아 보겠습니다.
+ 			순번이 짝수이면 "짝수"를, 출력하고 짝수가 아니라면 "홀수"를
+ 			출력해주는 예제입니다. 자바에서의 if else 조건 처리라고 생각
+ 			하시면 됩니다.
+ 			status에는 인덱스가 짝수일 경우 status.even은 true가 됩니다.
+ 			짝수가 아닐 경우, 즉 홀수일 경우 순번에 홀수를 출력해줍니다.
+ 		-->
+ 		<tr th:each="itemDto, status:${itemDtoList}">
+ 			<td th:if="${status.even}" 
+ 				th:text="짝수"></td>
+ 			<td th:unless="${status.even}" 
+ 				th:text="홀수"></td>
+ 			<td th:text="${itemDto.itemNm}"></td>
+ 			<td th:text="${itemDto.itemDetail}"></td>
+ 			<td th:text="${itemDto.price}"></td>
+ 			<td th:text="${itemDto.regTime}"></td>
+ 		</tr>
+ 	</tbody>
+ </table>
+</body>
+</html>
+
+
+
+
+
+
+
+

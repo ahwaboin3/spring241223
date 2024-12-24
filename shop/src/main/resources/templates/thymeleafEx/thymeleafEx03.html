@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- thymeleafEx/thymeleafEx03.html -->
+<!-- th:each 예제
+	여러 개의 데이터를 가지고 있는 컬렉션 데이터를 화면에 출력하는 방법을
+	알아보겠습니다.
+ -->
+ <h1>상품 리스트 출력 예제</h1>
+ <table border="1">
+ 	<thead>
+ 		<tr>
+ 			<td>순번</td>
+ 			<td>상품명</td>
+ 			<td>가격</td>
+ 			<td>상품등록일</td>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<!-- th:each를 이용하면 자바의 for문처럼 반목문을 사용할 수 있습니다
+ 			전달받은 itemDtoList에 있는 데이터를 하나씩 꺼내와서 ItemDto에
+ 			담아줍니다. status에는 현재 반복에 대한 상태  데이터가 존재합니다.
+ 			변수명은 status대신 다른 것을 사용해도 됩니다.
+ 		 -->
+ 		<tr th:each="itemDto, status:${itemDtoList}">
+ 			<td th:text="${status.index}"></td>
+ 			<td th:text="${itemDto.itemNm}"></td>
+ 			<td th:text="${itemDto.itemDetail}"></td>
+ 			<td th:text="${itemDto.price}"></td>
+ 			<td th:text="${itemDto.regTime}"></td>
+ 		</tr>
+ 	</tbody>
+ </table>
+</body>
+</html>
+
+
+
+
+
+
+
+
