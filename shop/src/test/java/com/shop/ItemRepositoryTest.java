@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -71,7 +72,6 @@ public class ItemRepositoryTest {
 	}
 	
 	//상품 이름으로 검색 테스트
-	@Test
 	public void getByNmTest() {
 		List<Item> items=itemRepository.findByItemNm("테스트 상품");
 		System.out.println(items.size());
@@ -79,6 +79,51 @@ public class ItemRepositoryTest {
 			System.out.println(item);
 		}
 	}
+	
+	//테스트 데이터 생성을 위해서 10개의 상품을 저장하는 메소드
+	public void createItemList() {
+		for(int i=0;i<10;i++) {
+			Item item=new Item();
+			item.setItemNm("테스트 상품"+i);
+			item.setPrice(1000+i);
+			item.setItemDetail("테스트 상품 상세 설명"+i);
+			item.setItemSellStatus(ItemSellStatus.SELL);
+			item.setStockNumber(100);
+			item.setRegTime(LocalDateTime.now());
+			item.setUpdateTime(LocalDateTime.now());
+			itemRepository.save(item);
+		}
+	}
+	
+	@DisplayName("상품명, 상품살제설명 or 테스트")
+	public void findByItemNmOrItemDetailTest() {
+		List<Item> itemList=
+				itemRepository.findByItemNmOrItemDetail(
+						"테스트 상품1", "테스트 상품 상세 설명5");
+		for(Item item:itemList) {
+			System.out.println(item);
+		}
+	}
+	
+	@DisplayName("가격 LessThan 테스트")
+	public void findByPriceLessThanTest() {
+		List<Item> items=
+				itemRepository.findByPriceLessThan(1005);
+		for(Item item:items) {
+			System.out.println(item);
+		}
+	}
+	
+	@Test
+	@DisplayName("가격 내림차순 조회 테스트")
+	public void findByOrderPriceDesc() {
+		List<Item> items=
+			itemRepository.findByPriceLessThanOrderByPriceDesc(1005);
+		for(Item item:items) {
+			System.out.println(item);
+		}
+	}
+
 }
 
 

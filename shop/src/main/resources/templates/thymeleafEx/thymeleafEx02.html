@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- thymeleafEx02.html -->
+<!-- 
+	Thymeleaf
+	
+	th:text
+	태그 컨텐츠 영역에 출력합니다.
+ -->
+ <h1 th:text="${say}"></h1>
+ <h1>상품 데이터 출력 예제</h1>
+ <div>
+ 	상품명 : <span th:text="${itemDto.itemNm}"></span>
+ </div>
+ <div>
+ 	상품상세설명 : <span th:text="${itemDto.itemDetail}"></span>
+ </div>
+ <div>
+ 	상품등록일 : <span th:text="${itemDto.regTime}"></span>
+ </div>
+ <div>
+ 	상품가격 : <span th:text="${itemDto.price}"></span>
+ </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
