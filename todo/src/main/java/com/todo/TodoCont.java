@@ -16,14 +16,14 @@ public class TodoCont {
 	TodoSer todoSer;
 	
 	@GetMapping
-	public String putToto(Todo todo) {
+	public String putTodo(Todo todo) {
 		todo.setCreatedDate(LocalDateTime.now());
 		todoSer.putTodo(todo);
 		return "index";
 	}
 	
 	@PostMapping
-	public String putTotoPost(Todo todo) {
+	public String putTodoPost(Todo todo) {
 		todo.setCreatedDate(LocalDateTime.now());
 		System.out.println(todo);
 		return "index";
