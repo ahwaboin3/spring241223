@@ -99,7 +99,7 @@ public class ThymeleafExController {
 	
 	@GetMapping(value="/ex07")
 	public String thymeleafExample06() {
-		return "layouts/layout1";
+		return "thymeleafEx07";
 	}
 
 }
