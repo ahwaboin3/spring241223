@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- thymeleafEx06.html -->
+	<!-- th:href 예제 -->
+	<h1>Ex06</h1>
+	<div>
+		<a href="/">index</a>
+	</div>
+	<div>
+		<a th:href="@{/}">index</a>
+	</div>
+	<div>
+		<a th:href="@{/thymeleaf/ex01}">예제1 페이지 이동</a>
+	</div>
+	<div>
+		<a th:href="@{https://www.thymeleaf.org/}">
+			thymeleaf 공식 페이지 이동
+		</a>
+	</div>
+	<!-- 링크로 이동 시 파라미터 값을 전달한다. -->
+	<div>
+		<a 
+			href="/thymeleaf/ex06?param1=파라미터 데이터1
+				&param2=파라미터 데이터2">
+			파라미터 전달
+		</a>
+	</div>
+	<div>
+		<div th:text="${param1}"></div>
+		<div th:text="${param2}"></div>
+	</div>
+	
+	<h2>thymeleaf에서 파라미터 전달</h2>
+	<div>
+		<a th:href="@{/thymeleaf/ex06(param1='파라미터 데이터1',
+			param2='파라미터 데이터2')}">thymeleaf 파라미터 전달</a>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
