@@ -11,13 +11,6 @@ public class TodoTest {
 	@Autowired
 	TodoRepo todoRepo;
 	
-	public void saveTodo() {
-		Todo todo=new Todo();
-		todo.setDone(false);
-		todo.setContent("빨래 널기");
-		todo.setCreatedDate(LocalDateTime.now());
-		todoRepo.save(todo);
-	}
 	@Test
 	public void saveTodos() {
 		Todo todo1=new Todo();
