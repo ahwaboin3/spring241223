@@ -17,5 +17,12 @@ collate utf8_general_ci;
 use todo;
 select * from todo;
 
+-- cardatabase 데이터베이스 만들기
+create database cardatabase
+default character set utf8 
+collate utf8_general_ci;
+
+use cardatabase;
+
 
 
