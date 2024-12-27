@@ -2,6 +2,9 @@ package com.packt.cardatabase.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +23,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+//car테이블과 owner테이블 간의 일대다 관계 때문에 car테이블의 전체 가져오기가
+//문제가 발생했습니다.
+//자동차가 직렬화되면 연결된 소유자가 직렬화되고 이어서 그가 소유한 자동차가 다시
+//직렬화되는식의 문제입니다.
+//Owner클래스의 cars필드에 @JsonIgnore 어노테이션을 지정해서 직렬화 프로세스 중에
+//cars필드를 무시하게 하는 것이다.
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Owner {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +41,7 @@ public class Owner {
 	//예를 들어, 소유자를 삭제하면 그 소유자와 연결된 모든 자동차도 함께
 	//삭제된다. mappedBy="owner"특성 설정은 Car클래스에 있는 owner필드가
 	//이 관계의 기본키임을 지정한다.
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="owner")
 	private List<Car> cars;
 	
