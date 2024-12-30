@@ -12,18 +12,29 @@ function App() {
   const [isReady,setReady]=useState(false)
   //콜백함수가 첫 번째 렌더링 전에 한 번 호출된다.
   useEffect(()=>{
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=f91f941c5a4e99dede2a98ed106b5c7f")
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=Busan&units=metric&appid=f91f941c5a4e99dede2a98ed106b5c7f")
     .then(result=>result.json())
     .then(jsonResult=>{
+      //console.log(jsonResult)
       setTemp(jsonResult.main.temp)
+      setDesc(jsonResult.weather[0].main)
+      setIcon(jsonResult.weather[0].icon)
+      setReady(true)
     })
+    .catch(err=>console.log(err))
   },[])
 
-  return (
-    <div className="App">
-      
-    </div>
-  );
+  if(isReady){
+    return (
+      <div className="App">
+        <p>Temperature: {temp}</p>
+        <p>Description: {desc}</p>
+        <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt="Weather icon" />
+      </div>
+    )
+  }else{
+    return <div>Loading...</div>
+  }
 }
 
 export default App;
