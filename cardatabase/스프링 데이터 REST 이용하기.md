@@ -24,6 +24,10 @@ DELETE | 삭제(Delete)
 - 엔티티를 업데이트하려면 PATCH방식과 업데이트하려는 자동차의 링크(http://localhost:8080/cars/{id}를 이용한다. 헤더에는 값이 application/json인 Content-Type 필드가 있어야 하며, 데이터가 편집된 car객체를 요청 본문에 지정한다. PATCH요청을 수행하려면 업데이트된 필드만 보내야 한다. PUT요청을 수행하려면 요청 본문에 모든 필드를 포함해야 한다.
 - 업데이트가 수행되면 응답 상태는 200 OK가 된다.
 
+### 방금 생성한 새 자동차에 소유자를 추가
+- 이 작업에는 PUT방식과 http://localhost:8080/cars/{id}/owner경로를 이용한다. 본문의 내용이 자동차와 소유자를 연결한다.(http://localhost:8080/owners/1)
+- 이 경우 헤더의 Content-Type 값은 text/uri-list가 된다.
+
 
 
 
