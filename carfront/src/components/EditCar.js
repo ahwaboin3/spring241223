@@ -1,44 +1,39 @@
-// AddCar.js
-//추가 기능
+//EditCar.js
 import { Dialog,DialogActions,DialogContent
     ,DialogTitle
  } from "@mui/material"
 import { useState } from "react"
 
-function AddCar({addCar}){
-    //대화상자에도 대화상자 폼의 표시 여부를 정의하는 불린 상태인 open이 필요하다.
+function EditCar({data,updateCar}){
     const [open,setOpen]=useState(false)
-    //모든 자동차 필드를 포함하는 상태를 선언한다.
     const [car,setCar]=useState({
-        brand:"",
-        model:"",
-        color:"",
-        year:"",
-        price:""
+        brand:"",model:"",color:"",
+        year:"",price:""
     })
-
-    //대화상자 폼을 닫고 여는 두 함수를 추가 한다.
     const handleClickOpen=()=>{
+        setCar({
+            brand:data.row.brand,model:data.row.model,
+            color:data.row.color,year:data.row.year,
+            price:data.row.price
+        })
         setOpen(true)
     }
     const handleClickClose=()=>{
         setOpen(false)
     }
-
     const handleChange=(event)=>{
         setCar({...car,[event.target.name]:event.target.value})
     }
-
+    //자동차를 업데이트하고 모달 폼을 닫음
     const handleSave=()=>{
-        addCar(car)
+        updateCar(car,data.id)
         handleClickClose()
     }
-
-    return (
+    return(
         <div>
-            <button onClick={handleClickOpen}>New Car</button>
+            <button onClick={handleClickOpen}>Edit Car</button>
             <Dialog open={open} onClose={handleClickClose}>
-                <DialogTitle>New Car</DialogTitle>
+                <DialogTitle>Edit Car</DialogTitle>
                 <DialogContent>
                     <input placeholder="Brand" name="brand" value={car.brand} onChange={handleChange} />
                     <br/>
@@ -58,4 +53,4 @@ function AddCar({addCar}){
         </div>
     )
 }
-export default AddCar
+export default EditCar

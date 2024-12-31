@@ -3,6 +3,7 @@ import {useState,useEffect} from "react"
 import { SEVER_URL } from "../constants"
 import {DataGrid} from "@mui/x-data-grid"
 import AddCar from "./AddCar"
+import EditCar from "./EditCar"
 
 function Carlist(){
     //Rest api에서 가져온 자동차 정보를 담을 상태 객체를 선언합니다. 비어 있는 배열을 기본값으로 cars라는 상태를 선언한다.
@@ -21,6 +22,17 @@ function Carlist(){
         {field:"color",headerName:"Color",width:200},
         {field:"year",headerName:"Year",width:150},
         {field:"price",headerName:"Price",width:150},
+        {
+            
+            headerName:"",
+            sortble:false,
+            filterable:false,
+            renderCell:row=>
+                <EditCar 
+                    data={row} 
+                    updateCar={updateCar}
+                />
+        },
         {
             field:"_links.self.href",
             headerName:"",
@@ -46,10 +58,45 @@ function Carlist(){
         .then(()=>fetchCars())
         .catch(err=>console.log(err))
     }
+
+    //새로운 자동차 추가
+    const addCar=(car)=>{
+        fetch(SEVER_URL+"cars",
+            {
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(car)
+            }
+        )
+        .then(response=>{
+            if(response.ok){
+                fetchCars()
+            }else{
+                alert("Something went wrong!")
+            }
+        })
+        .catch(err=>console.log(err))
+    }
+    //자동차 업데이트
+    const updateCar=(car,link)=>{
+        fetch(link,{
+            method:"PUT",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(car)
+        })
+        .then(response=>{
+            if(response.ok){
+                fetchCars()
+            }else{
+                alert("Something went wrong!")
+            }
+        })
+        .catch(err=>console.log(err))
+    }
     
     return(
         <>
-            <AddCar />
+            <AddCar addCar={addCar}/>
             <div style={{height:500,width:"100%"}}>
                 <DataGrid
                     rows={cars}
