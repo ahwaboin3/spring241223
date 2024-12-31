@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import { Typography } from '@mui/material';
 import './App.css';
+import AppBar from "@mui/material/AppBar"
+import Toolbar from "@mui/material/Toolbar"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">
+            Carshop
+          </Typography>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 }

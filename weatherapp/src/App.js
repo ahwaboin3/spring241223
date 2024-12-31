@@ -33,7 +33,7 @@ function App() {
       </div>
     )
   }else{
-    return <div>Loading...</div>
+    return <div className="App">Loading...</div>
   }
 }
 
